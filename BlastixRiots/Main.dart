@@ -174,7 +174,7 @@ class Gaming extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double bpm = elapsedSeconds > 0 ? (totalClicks * 60 / elapsedSeconds) : 0; // BPM 계산
+    double bpm = elapsedSeconds > 0 ? (totalClicks * 30 / elapsedSeconds) : 0; // BPM 계산
 
     return Center(
       child: Column(
