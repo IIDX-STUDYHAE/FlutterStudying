@@ -1,10 +1,13 @@
+//즐기는 법: https://dartpad.dev/ 사이트를 들어가면 flutter 를 WASM 형태로 돌릴 수 있도록 해놔서 웹에서 잘 돌아갑니다 복붙해서 하면 됩니당
+
+
 import 'dart:async';
 import 'dart:ui';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// 색상 상수 클래스 밝은초록 #ADFF2F 밝은파랑 #00A1F4 레이시스 느낌의 핑크 #FF69B4
+// 색상 상수 클래스 밝은초록 #ADFF2F 밝은파랑 #00A1F4 레이시스 느낌의 핑크 #FF69B4 추후 시작 UI에서 설정할 수 있도록 세팅예정.
 class GameColors {
   static const Color leftKnobColor = Color(0xFFFF69B4); // 왼쪽 노브 선
   static const Color leftIndicatorColor = Color(0xFFFF69B4); // 왼쪽 인디케이터+왼쪽 판정 불빛
