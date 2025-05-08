@@ -1,5 +1,5 @@
 //startScreen UX 개선, 자잘한 위치조정
-
+//일단 대충 어느 정도 틀은 완성된 상태입니다 내일 5월 9일에 1.1.4 Firestorm -완- 을 네이버 웨일 샵에 확장앱 심사까지 받고 싶네용 오호홍 
 
 import 'dart:async';
 import 'dart:ui';
