@@ -276,7 +276,7 @@ class _KnobPracticeGameState extends State<KnobPracticeGame> with SingleTickerPr
      // 0.02초마다 점수 판정, 메모리 활용 줄이되 보정 비스무리한 로직 구현
     int ironchi = 0; //이론치 계산용 변수
     scoreTimer = Timer.periodic(Duration(milliseconds: 20), (timer) {
-      ironchi++;
+       if (leftKnobPath.isNotEmpty)ironchi++;
   setState(() {
     // 현재 노브와 인디케이터 x좌표
     double leftKnobXAtJudgment = leftKnobPath.isNotEmpty && leftKnobPath.first.dy >= judgmentLineY
@@ -559,7 +559,7 @@ class EndScreen extends StatelessWidget {
             ),
             SizedBox(height: 40),
             Text(
-              'ironchi:${(ironchi - 65) * 200 }',
+              'ironchi:${ironchi * 200 }',
               style: TextStyle(color: Colors.white, fontSize: 24),
             ),
             // 점수 진행 막대 그래프
