@@ -541,7 +541,7 @@ class EndScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int maxScore = (ironchi - 65)*200;
+    final int maxScore = ironchi*200;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -559,7 +559,7 @@ class EndScreen extends StatelessWidget {
             ),
             SizedBox(height: 40),
             Text(
-              'ironchi:${ironchi * 200 }',
+              'ironchi:${maxscore}',
               style: TextStyle(color: Colors.white, fontSize: 24),
             ),
             // 점수 진행 막대 그래프
