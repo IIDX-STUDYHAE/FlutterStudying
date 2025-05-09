@@ -559,7 +559,7 @@ class EndScreen extends StatelessWidget {
             ),
             SizedBox(height: 40),
             Text(
-              'ironchi:${maxscore}',
+              'ironchi:${maxScore}',
               style: TextStyle(color: Colors.white, fontSize: 24),
             ),
             // 점수 진행 막대 그래프
