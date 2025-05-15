@@ -22,7 +22,6 @@ class _BallRollingAppState extends State<BallRollingApp>
   late Animation<double> _xAnimation;
   String _selectedCurveName = 'linear'; // 초기 상태
 
-  //한 줄 요약 쿼리는 Grok3 AI의 도움을 받아서 생성했습니다. 
   final Map<String, Map<String, dynamic>> _curveMap = {
     'linear': {
       'curve': Curves.linear,
@@ -184,10 +183,15 @@ class _BallRollingAppState extends State<BallRollingApp>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: 3),
-      vsync: this,
-    );
+      duration: const Duration(seconds: 3),
+      vsync: this,)..addStatusListener((status) {
+      if (status == AnimationStatus.completed){
+        _controller.reset();
+        _controller.forward();
+      }
+    });
     _updateAnimation();
+    _controller.forward();
   }
 
   // 애니메이션 업데이트 (곡선 변경 시 호출)
@@ -227,7 +231,7 @@ class _BallRollingAppState extends State<BallRollingApp>
                 child: Center(
                   child: Text(
                     _curveMap[_selectedCurveName]!['description'],
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
               ),
@@ -247,7 +251,7 @@ class _BallRollingAppState extends State<BallRollingApp>
                     child: Container(
                       width: 80,
                       height: 80,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.cyan,
                         shape: BoxShape.circle,
                       ),
