@@ -1,5 +1,4 @@
 //AnimationJongRyu에서 screenUtil을 적용해다라고 ai에 부탁함. 
-  
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // screen_util 패키지 추가
 
@@ -258,11 +257,6 @@ class _BallRollingAppState extends State<BallRollingApp>
               ),
             ),
             // 기준선 (화면 중앙 Y축)
-            Positioned(
-              left: (MediaQuery.of(context).size.width / 2) - 5.w, // 중앙 위치 조정
-              top: (MediaQuery.of(context).size.height / 2) - 50.h,
-              child: Container(width: 10.w, height: 100.h, color: Colors.white),
-            ),
             // 공 애니메이션 (화면 중앙 Y축 기준 움직임)
             Center(
               child: AnimatedBuilder(
@@ -274,7 +268,7 @@ class _BallRollingAppState extends State<BallRollingApp>
                       width: 80.w, // 너비 상대적으로 조정
                       height: 80.h, // 높이 상대적으로 조정
                       decoration: const BoxDecoration(
-                        color: Colors.cyan,
+                        color: Color(0xFF000000),
                         shape: BoxShape.circle,
                       ),
                     ),
