@@ -1,3 +1,5 @@
+//AnimationJongRyu에서 screenUtil을 적용해다라고 ai에 부탁함. 
+  
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // screen_util 패키지 추가
 
@@ -231,21 +233,26 @@ class _BallRollingAppState extends State<BallRollingApp>
         ),
         child: Stack(
           children: [
-            // 흰색 텍스트 박스 (화면 상단)
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: 640.w, // 너비 상대적으로 조정
-                height: 32.h, // 높이 상대적으로 조정
-                margin: EdgeInsets.only(top: 8.h), // 상단 마진
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.black),
-                ),
-                child: Center(
-                  child: Text(
-                    _curveMap[_selectedCurveName]!['description'],
-                    style: TextStyle(fontSize: 16.sp), // 텍스트 크기 sp로 조정
+            // 흰색 텍스트 박스 (화면 상단에서 약간 아래, 좌우 안쪽으로 이동)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 50.w), // 좌우 패딩 적용
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: double.infinity, // 부모의 전체 너비 사용
+                  height: 32.h,
+                  margin: EdgeInsets.only(
+                    top: 8.h + 50.h,
+                  ), // 기존 top 마진 + 50dp 아래로 이동
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black),
+                  ),
+                  child: Center(
+                    child: Text(
+                      _curveMap[_selectedCurveName]!['description'],
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                   ),
                 ),
               ),
@@ -275,58 +282,58 @@ class _BallRollingAppState extends State<BallRollingApp>
                 },
               ),
             ),
-            // 드롭다운 메뉴 (화면 하단)
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.all(16.w), // 패딩 상대적으로 조정
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white, // 드롭다운 위젯 배경 흰색
-                    borderRadius: BorderRadius.circular(8.r), // radius 상대적으로 조정
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 8.r, // blurRadius 상대적으로 조정
-                        offset: Offset(2.w, 2.h), // offset 상대적으로 조정
-                      ),
-                    ],
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 8.h,
-                  ), // 패딩 상대적으로 조정
-                  child: DropdownButton<String>(
-                    value: _selectedCurveName,
-                    style: TextStyle(
-                      fontSize: 24.sp, // 텍스트 크기 sp로 조정
-                      color: Colors.black,
+            // 드롭다운 메뉴 (화면 하단에서 약간 위로, 좌우 안쪽으로 이동)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 50.w), // 좌우 패딩 적용
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 16.h + 50.h,
+                  ), // 기존 bottom 패딩 + 50dp 위로 이동
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white, // 드롭다운 위젯 배경 흰색
+                      borderRadius: BorderRadius.circular(8.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 8.r,
+                          offset: Offset(2.w, 2.h),
+                        ),
+                      ],
                     ),
-                    dropdownColor: Colors.white, // 드롭다운 메뉴 배경 흰색
-                    iconSize: 36.w, // 아이콘 크기 상대적으로 조정
-                    itemHeight: 60.h, // 항목 높이 상대적으로 조정
-                    items:
-                        _curveMap.keys.map((curveName) {
-                          return DropdownMenuItem<String>(
-                            value: curveName,
-                            child: Text(
-                              curveName,
-                              style: TextStyle(
-                                fontSize: 24.sp,
-                              ), // 텍스트 크기 sp로 조정
-                            ),
-                          );
-                        }).toList(),
-                    onChanged: (String? newCurveName) {
-                      if (newCurveName != null) {
-                        setState(() {
-                          _selectedCurveName = newCurveName;
-                          _updateAnimation(); // 새 곡선으로 애니메이션 업데이트
-                          _controller.reset(); // 공 위치 리셋
-                          _controller.forward(); // 애니메이션 재실행
-                        });
-                      }
-                    },
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 8.h,
+                    ),
+                    child: DropdownButton<String>(
+                      value: _selectedCurveName,
+                      style: TextStyle(fontSize: 24.sp, color: Colors.black),
+                      dropdownColor: Colors.white, // 드롭다운 메뉴 배경 흰색
+                      iconSize: 36.w,
+                      itemHeight: 60.h,
+                      items:
+                          _curveMap.keys.map((curveName) {
+                            return DropdownMenuItem<String>(
+                              value: curveName,
+                              child: Text(
+                                curveName,
+                                style: TextStyle(fontSize: 24.sp),
+                              ),
+                            );
+                          }).toList(),
+                      onChanged: (String? newCurveName) {
+                        if (newCurveName != null) {
+                          setState(() {
+                            _selectedCurveName = newCurveName;
+                            _updateAnimation(); // 새 곡선으로 애니메이션 업데이트
+                            _controller.reset(); // 공 위치 리셋
+                            _controller.forward(); // 애니메이션 재실행
+                          });
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
